@@ -1,55 +1,18 @@
-# Ascar-Theme-Tibia-ZnoteACC
-## In Development
+# Ascar-Theme-Tibia-ZnoteAAC
+
+### Development
+- Finished ![Hopstarter-Rounded-Square-Button-Ok](https://user-images.githubusercontent.com/89811188/133524779-24574036-77dd-4a81-b579-8c9c0a6db52e.png)
 
 ### How to Install ?
 
 - Drag and drop all files inside of htdocs/www folder, make sure to unzip `engine` folder.
 
-### What is working ?
-
-- Index - Layout
-
-### Futures Updates:
-
-- URL Sync
-
-- CSS Style
-
-- HTML5 Adapting
-
-- Integrate News writting as PHP on web
-
-- Highscores
-
-- Downloads
-
-- PowerGamers
-
-- Maps Interactive
-
-- Forum ( from znote ), if you wish your own forum just use `<iframe>`
-
-- Houses
-
-- Character Profile
-
-- Admin Panel
-
-- My Account
-
-- Buy Points
-
-- Store
-
-- Guilds
-
-- Guilds War
-
-- Frags
-
-- Deaths
-
-- And more
 
 
-![Screenshot 2021-09-15 14 57 48](https://user-images.githubusercontent.com/89811188/133441942-abd759c7-a1a1-4461-ba5d-d1cad553f68a.png)
+![Sans titre](https://user-images.githubusercontent.com/89811188/133524524-89a344d6-d911-4b7f-9e78-cb146a3dea32.png)
+
+### Credits
+
+- Engine: ZnoteAAC
+- Web: Ascar
+- Modified by Alex45

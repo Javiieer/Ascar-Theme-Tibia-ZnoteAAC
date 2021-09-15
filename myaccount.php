@@ -303,8 +303,9 @@ if ($render_page) {
 	?>
 	<div id="myaccount">
 		<h1>My account</h1>
-		<p>Welcome to your account page, <?php if ($config['ServerEngine'] !== 'OTHIRE') echo $user_data['name']; else echo $user_data['id']; ?><br>
-			<?php if ($config['ServerEngine'] !== 'OTHIRE') {
+		<p>Welcome to your account page, <font color="orange"><?php if ($config['ServerEngine'] !== 'OTHIRE') echo $user_data['name']; else echo $user_data['id']; ?></font><br>
+			<div class="inner">
+		<?php if ($config['ServerEngine'] !== 'OTHIRE') {
 				if ($user_data['premdays'] != 0) {
 					echo 'You have ' .$user_data['premdays']. ' remaining premium account days.';
 				} else {
@@ -327,6 +328,84 @@ if ($render_page) {
 				}
 			endif; ?>
 		</p>
+
+			<?php
+			// If admin
+			if (is_admin($user_data)) {
+			?>
+			<center><h4 style="color:gold"> Panel Admin </h4></center>
+			<hr>
+			<a href="admin.php" class="btn btn-primary btn-shiny btn-block">
+				<font color="orange">Admin Page</font></a>
+			
+			<a href="admin_news.php" class="btn btn-primary btn-shiny btn-block">
+				<font color="orange">Admin News</font></a>
+
+			<a href="admin_gallery.php" class="btn btn-primary btn-shiny btn-block">
+				<font color="orange">Admin Gallery</font></a>
+
+			<a href="admin_skills.php" class="btn btn-primary btn-shiny btn-block">
+			<font color="orange">Admin Skills</font></a>
+			
+			<a href="admin_reports.php" class="btn btn-primary btn-shiny btn-block">
+				<font color="orange">Admin Reports</font></a>
+		
+			<a href="admin_helpdesk" class="btn btn-primary btn-shiny btn-block">
+				<font color="orange">Admin Tickets</font></a>
+
+			<a href="admin_shop.php" class="btn btn-primary btn-shiny btn-block">
+				<font color="orange">Admin Shop</font></a>
+		
+			<a href="admin_auction.php" class="btn btn-primary btn-shiny btn-block">
+				<font color="orange">Admin Auction</font></a>
+
+			<?php
+			$new = 0;
+			$cat = 4; //Category ID for feedback section
+			$threads = mysql_select_multi("SELECT `id`, `player_id` FROM `znote_forum_threads` WHERE `forum_id`='$cat' AND `closed`='0';");
+			if ($threads !== false) {
+				$staffs = mysql_select_multi("SELECT `id` FROM `players` WHERE `group_id` > '1';");
+
+				foreach($threads as $thread) {
+					$response = false;
+					$posts = mysql_select_multi("SELECT `id`, `player_id` FROM `znote_forum_posts` WHERE `thread_id`='". $thread['id'] ."';");
+					if ($posts !== false) {
+						foreach($posts as $post) {
+							foreach ($staffs as $staff) {
+								if ($post['player_id'] == $staff['id']) $response = true;
+							}
+						}
+					}
+
+					if (!$response) $new++;
+				}
+			}
+			?>
+			<a href="forum.php?cat=4" class="btn btn-primary btn-shiny btn-block">
+				<font color="orange">Feedback [<?php echo $new; ?>] new</font></a>
+
+			<?php
+			}
+			// end if admin
+			?>
+			<hr>
+			<a href="myaccount.php" class="btn btn-primary btn-shiny btn-block">
+				My Account</a>
+
+			<a href="createcharacter.php" class="btn btn-primary btn-shiny btn-block">
+				Create Character</a>
+
+			<a href="changepassword.php" class="btn btn-primary btn-shiny btn-block">
+				Change Password</a>
+
+			<a href="settings.php" class="btn btn-primary btn-shiny btn-block">
+			Settings</a>
+			
+			<a href="logout.php" class="btn btn-primary btn-shiny btn-block">
+				Logout</a>
+		
+	</div>
+			
 		<?php
 		if ($config['ServerEngine'] === 'TFS_10' && $config['twoFactorAuthenticator']) {
 			$query = mysql_select_single("SELECT `secret` FROM `accounts` WHERE `id`='".(int)$session_user_id."' LIMIT 1;");

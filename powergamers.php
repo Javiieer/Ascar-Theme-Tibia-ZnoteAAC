@@ -7,7 +7,7 @@ include 'layout/overall/footer.php';
 	exit();
 }
 ?>
-<div class="panel">
+<div class="panel-heading">
 <div class="page-header"><h3>Powergamers</h3></div>
 	<?php
 	$limit = $config['powergamers']['limit'];

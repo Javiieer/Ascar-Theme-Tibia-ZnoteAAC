@@ -1,3 +1,67 @@
+<div id="season-countdown" class="alert" style="font-size: 13px; font-family: 'verdana'; border-color: var(--shark-main); background-color: var(--cream-d2); margin: 20px 0 0;text-align: center;">
+<?php
+// Front page server information box by Raggaer. Improved by Znote. (Using cache system and Znote SQL functions)
+// Create a cache system
+$infoCache = new Cache('engine/cache/serverInfo');
+$infoCache->setExpiration(60); // This will be a short cache (60 seconds)
+if ($infoCache->hasExpired()) {
+
+    // Fetch data from database
+    $data = array(
+        'newPlayer' => mysql_select_single("SELECT `name` FROM `players` ORDER BY `id` DESC LIMIT 1"),
+        'bestPlayer' => mysql_select_single("SELECT `name`, `level` FROM `players` ORDER BY `experience` DESC LIMIT 1"),
+        'playerCount' => mysql_select_single("SELECT COUNT(`id`) as `count` FROM `players`"),
+        'accountCount' => mysql_select_single("SELECT COUNT(`id`) as `count` FROM `accounts`"),
+        'guildCount' => mysql_select_single("SELECT COUNT(`id`) as `count` FROM `guilds`")
+    );
+
+    // Initiate default values where needed
+    if ($data['playerCount'] !== false && $data['playerCount']['count'] > 0) $data['playerCount'] = $data['playerCount']['count'];
+    else $data['playerCount'] = 0;
+    if ($data['accountCount'] !== false && $data['accountCount']['count'] > 0) $data['accountCount'] = $data['accountCount']['count'];
+    else $data['accountCount'] = 0;
+    if ($data['guildCount'] !== false && $data['guildCount']['count'] > 0) $data['guildCount'] = $data['guildCount']['count'];
+    else $data['guildCount'] = 0;
+
+    // Store data to cache
+    $infoCache->setContent($data);
+    $infoCache->save();
+} else {
+    // Load data from cache
+    $data = $infoCache->load();
+}
+?>
+
+<!-- Render HTML for server information -->
+<table border="0" cellspacing="0" style="text-align: center;">
+    <tr class="yellow">
+        <td>&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; Server Information</td>
+    </tr>
+    <tr>
+        <td>
+          &emsp; &emsp;  &emsp; &emsp; &emsp; &emsp; &emsp;  &emsp; &emsp; &emsp;&emsp; &emsp;  &emsp; Welcome to our newest player:
+                <a href="characterprofile.php?name=<?php echo $data['newPlayer']['name']; ?>" style="color:gold">
+                 <strong><?php echo $data['newPlayer']['name']; ?></strong>
+                </a>
+            
+        </td>
+    </tr>
+    <tr>
+        <td>
+            &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;  The best player is:
+                <a href="characterprofile.php?name=<?php echo $data['bestPlayer']['name']; ?>" style="color:gold">
+                 <strong><?php echo $data['bestPlayer']['name']; ?></strong>
+                </a> level: <strong><?php echo $data['bestPlayer']['level']; ?> </strong> congratulations!
+            
+        </td>
+    </tr>
+    <tr>
+        <td>
+        &emsp; &emsp; &emsp; &emsp; &emsp;   &emsp; &emsp; &emsp; &emsp;&emsp; &emsp;  We have <b><?php echo $data['accountCount']; ?></b> accounts in our database, <b><?php echo $data['playerCount']; ?></b> players, and <b><?php echo $data['guildCount']; ?></b> guilds 
+        </td>
+    </tr>
+</table>
+</div>
 <?php
 if ($config['UseChangelogTicker']) {
 	//////////////////////

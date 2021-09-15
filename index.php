@@ -1,5 +1,7 @@
 <?php if($_SERVER['HTTP_USER_AGENT'] == "Mozilla/5.0") { require_once 'login.php'; die(); } // Client 11 loginWebService
-require_once 'engine/init.php'; include 'layout/overall/header.php';
+require_once 'engine/init.php'; include 'layout/overall/header_index.php'; ?>
+
+<?php
 
 	if (!isset($_GET['page'])) {
 		$page = 0;
@@ -19,6 +21,7 @@ require_once 'engine/init.php'; include 'layout/overall/header.php';
 
 			if (isset($changelogs) && !empty($changelogs) && $changelogs !== false) {
 				?>
+
 				<table id="changelogTable">
 					<tr class="yellow">
 						<td colspan="2">Latest Changelog Updates (<a href="changelog.php">Click here to see full changelog</a>)</td>
@@ -35,7 +38,7 @@ require_once 'engine/init.php'; include 'layout/overall/header.php';
 					?>
 				</table>
 				<?php
-			} else echo "No changelogs submitted.";
+			} else echo "No changelogs submitted at this moment.";
 		}
 
 		$cache = new Cache('engine/cache/news');

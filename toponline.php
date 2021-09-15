@@ -74,7 +74,7 @@ foreach($znotePlayers as $player)
 	$number_of_rows++;
 	echo '<td ><center>'.hours_and_minutes($player['onlinetime3']).'</center></td><td ><center>'.hours_and_minutes($player['onlinetime2']).'</center></td><td ><center>'.hours_and_minutes($player['onlinetime1']).'</center></td><td ><center>'.hours_and_minutes($player['onlinetimetoday']).'</center></td></tr>';
 }
-echo '</TABLE></div>';
+echo '</TABLE>';
 ?>
 <?php
 include 'layout/overall/footer.php';
