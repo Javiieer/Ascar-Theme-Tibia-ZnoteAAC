@@ -4,11 +4,7 @@
 
 # What is working ?
 
-- Index 
-
-# What is not working ?
-
-- All pages not working
+- Index - Layout
 
 # Futures Updates:
 - URL Sync
