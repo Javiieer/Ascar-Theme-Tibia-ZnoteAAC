@@ -1,6 +1,10 @@
 # Ascar-Theme-Tibia-ZnoteACC
 ## In Development
 
+### How to Install ?
+
+- Drag and drop all files inside of htdocs/www folder, make sure to unzip `engine` folder.
+
 ### What is working ?
 
 - Index - Layout
@@ -23,7 +27,7 @@
 
 - Maps Interactive
 
-- Forum ( from znote ), if you wish your own forum just use [code]<iframe>[/code]
+- Forum ( from znote ), if you wish your own forum just use `<iframe>`
 
 - Houses
 
