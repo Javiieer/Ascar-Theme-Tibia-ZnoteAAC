@@ -62,6 +62,7 @@ if ($infoCache->hasExpired()) {
     </tr>
 </table>
 </div>
+
 <?php
 if ($config['UseChangelogTicker']) {
 	//////////////////////
@@ -71,7 +72,9 @@ if ($config['UseChangelogTicker']) {
 	$changelogs = $changelogCache->load();
 
 	if (isset($changelogs) && !empty($changelogs) && $changelogs !== false) {
-		?>
+		?><hr>
+		<div class="panel panel-default">
+		<div class="panel-heading">
 		<table id="changelogTable">
 			<tr class="yellow">
 				<td colspan="2">Latest Changelog Updates (<a href="changelog.php" style="color: darkorange;">Click here to see full changelog</a>)</td>
@@ -86,7 +89,7 @@ if ($config['UseChangelogTicker']) {
 				<?php
 			}
 			?>
-		</table>
+		</table></div></div>
 		<?php
 	} else echo "No changelogs submitted.";
 }
@@ -130,6 +133,7 @@ if ($news) {
 	    		<?php echo TransformToBBCode(nl2br($n['text'])); ?>
 	    	</div>
 	  </div>
+	
 		<?php
 	}
 }
