@@ -18,5 +18,5 @@ Here you can see the website in live: https://lepiigortv.com/github_websites/asc
 ### Credits
 
 - Engine: ZnoteAAC
-- Web: Ascar
-- Modified by Alex45
+- Web: Ascar.us
+- Modified by Alex45 and LSJAVIER
